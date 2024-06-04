@@ -24,7 +24,7 @@ namespace BankingSystem
             Beschreibung = beschreibung;
         }
 
-        public static List<Eintrag> GetEinträge()
+        public static List<Eintrag> GetEinträge(User user)
         {
             using (SqliteConnection connection = new SqliteConnection("Data Source=Assets/bank.db"))
             {
@@ -41,8 +41,11 @@ namespace BankingSystem
                 {
                     while (reader.Read())
                     {
-                        Eintrag eintrag = new Eintrag(reader.GetInt16(1), reader.GetInt16(2), reader.GetDateTime(3), reader.GetDouble(4), reader.GetString(5));
-                        Einträge.Add(eintrag);
+                        if (reader.GetInt16(2) == user.ID)
+                        {
+                            Eintrag eintrag = new Eintrag(reader.GetInt16(1), reader.GetInt16(2), reader.GetDateTime(3), reader.GetDouble(4), reader.GetString(5));
+                            Einträge.Add(eintrag);
+                        }
                     }
                 }
                 return Einträge;

@@ -20,6 +20,7 @@ namespace BankingSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        public User MainUser;
         public MainWindow()
         {
             InitializeComponent();
@@ -53,7 +54,12 @@ namespace BankingSystem
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WindowAnmelden windowAnmelden = new WindowAnmelden();
+            windowAnmelden.Owner = this;
             windowAnmelden.ShowDialog();
+            MainUser = windowAnmelden.MainUser;
+            LabelName.Content = MainUser.Name;
+            LabelKontostand.Content = $"{MainUser.Kontostand} €";
+            EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
         }
     }
 }
