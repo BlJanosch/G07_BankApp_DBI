@@ -72,10 +72,26 @@ namespace BankingSystem
                         return reader.GetDouble(0);
                     }
                 }
-
-
+                return 0;
             }
-            return 0;
+
+
+        }
+
+        private void ButtonKontoLöschen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonKontoAbmelden_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindowAnmelden windowAnmelden = new WindowAnmelden();
+            windowAnmelden.ShowDialog();
         }
     }
 }
