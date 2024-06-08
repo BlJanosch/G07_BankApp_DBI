@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -132,7 +133,31 @@ namespace BankingSystem
 
         private void ButtonAbbrechen_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+            MainGrid.Children.Clear();
+            MainGrid.RowDefinitions.Clear();
+            MainGrid.ColumnDefinitions.Clear();
+
+            Button ButtonAnmeldenNew = new Button
+            {
+                Height = 80,
+                Width = 400,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Content = "Anmelden",
+                Margin = new Thickness(0, 0, 0, 100),
+            };
+            ButtonAnmeldenNew.Click += ButtonAnmelden_Click;
+
+            Button ButtonRegestrierenNew = new Button
+            {
+                Height = 80,
+                Width = 400,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Content = "Regestrieren",
+                Margin = new Thickness(0, 100, 0, 0),
+            };
+            ButtonRegestrierenNew.Click += ButtonRegistrieren_Click;
+            MainGrid.Children.Add(ButtonAnmeldenNew);
+            MainGrid.Children.Add(ButtonRegestrierenNew);
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)

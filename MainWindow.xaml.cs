@@ -80,23 +80,38 @@ namespace BankingSystem
 
         private void ButtonKontoLöschen_Click(object sender, RoutedEventArgs e)
         {
-
+            MainUser.DeleteUser();
+            DrawAnmelden();
         }
 
         private void ButtonKontoAbmelden_Click(object sender, RoutedEventArgs e)
         {
-
+            DrawAnmelden();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            DrawAnmelden();
+        }
+
+        public void DrawAnmelden()
+        {
+            LabelKontostand.Content = "";
+            LabelName.Content = "";
             WindowAnmelden windowAnmelden = new WindowAnmelden();
             windowAnmelden.Owner = this;
             windowAnmelden.ShowDialog();
-            MainUser = windowAnmelden.MainUser;
-            LabelName.Content = MainUser.Name;
-            LabelKontostand.Content = $"{MainUser.Kontostand} €";
-            EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
+            if (windowAnmelden.DialogResult == true)
+            {
+                MainUser = windowAnmelden.MainUser;
+                LabelName.Content = MainUser.Name;
+                LabelKontostand.Content = $"{MainUser.Kontostand} €";
+                EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

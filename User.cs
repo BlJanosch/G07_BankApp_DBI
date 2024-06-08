@@ -85,5 +85,19 @@ namespace BankingSystem
                 int tmp = command.ExecuteNonQuery();
             }
         }
+
+        public void DeleteUser()
+        {
+            using (SqliteConnection connection = new SqliteConnection("Data Source=assets/bank.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = connection.CreateCommand();
+
+                command.CommandText = $"DELETE FROM tblUser WHERE id = {ID};";
+
+                int tmp = command.ExecuteNonQuery();
+            }
+        }
     }
 }
