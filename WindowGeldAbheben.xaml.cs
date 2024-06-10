@@ -31,12 +31,19 @@ namespace BankingSystem
             try
             {
                 Geldmenge = Convert.ToDouble(TBGeldmenge.Text);
-                DialogResult = true;
-                this.Close();
+                if (Geldmenge >= 0)
+                {
+                    DialogResult = true;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Achtung! Nur positive Zahlen erlaubt!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
             }
             catch
             {
-                MessageBox.Show("Achtung! Nur Zahlen eingeben");
+                MessageBox.Show("Achtung! Nur Zahlen eingeben", "Fehler", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
     }

@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\bank.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="assets\bank.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.5" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.5" />
   </ItemGroup>
