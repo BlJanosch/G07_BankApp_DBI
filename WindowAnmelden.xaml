@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowAnmelden" Height="400" Width="600">
-    <Grid>
-        <Button x:Name="ButtonAnmelden" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,0,0,100">Anmelden</Button>
-        <Button x:Name="ButtonRegistrieren" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,100,0,0">Registrieren</Button>
+        Title="WindowAnmelden" Height="400" Width="600" >
+    <Grid x:Name="MainGrid">
+        <Button x:Name="ButtonAnmelden" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,0,0,100" Click="ButtonAnmelden_Click">Anmelden</Button>
+        <Button x:Name="ButtonRegistrieren" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,100,0,0" Click="ButtonRegistrieren_Click">Registrieren</Button>
     </Grid>
 </Window>

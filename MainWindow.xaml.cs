@@ -23,7 +23,7 @@ namespace BankingSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        public User currentUser = new User(1, "Noah Fedele", "Bartholomäberg", 7000, "testPW");
+        public User MainUser;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace BankingSystem
 
         public void initMain()
         {
-            this.LabelKontostand.Content = KontoStandHolen(currentUser.ID);
+            this.LabelKontostand.Content = KontoStandHolen(MainUser.ID);
         }
 
         private void ButtonGluecksspiel_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace BankingSystem
             windowGeldAbheben.ShowDialog();
             if (windowGeldAbheben.DialogResult == true)
             {
-                KontostandVeraendern(KontoStandHolen(currentUser.ID), windowGeldAbheben.Geldmenge*(-1), currentUser.ID);
+                KontostandVeraendern(KontoStandHolen(MainUser.ID), windowGeldAbheben.Geldmenge*(-1), MainUser.ID);
             }
             initMain();
 
@@ -59,7 +59,7 @@ namespace BankingSystem
             if (windowGeldUeberweisen.DialogResult == true)
             {
                 KontostandVeraendern(KontoStandHolen(UsernameTOUserID(windowGeldUeberweisen.Username)), windowGeldUeberweisen.Geldmenge, UsernameTOUserID(windowGeldUeberweisen.Username));
-                KontostandVeraendern(KontoStandHolen(currentUser.ID), windowGeldUeberweisen.Geldmenge *(-1), currentUser.ID);
+                KontostandVeraendern(KontoStandHolen(MainUser.ID), windowGeldUeberweisen.Geldmenge *(-1), MainUser.ID);
                 initMain();
             }
         }
@@ -137,18 +137,38 @@ namespace BankingSystem
 
         private void ButtonKontoLöschen_Click(object sender, RoutedEventArgs e)
         {
-
+            MainUser.DeleteUser();
+            DrawAnmelden();
         }
 
         private void ButtonKontoAbmelden_Click(object sender, RoutedEventArgs e)
         {
-
+            DrawAnmelden();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            DrawAnmelden();
+        }
+
+        public void DrawAnmelden()
+        {
+            LabelKontostand.Content = "";
+            LabelName.Content = "";
             WindowAnmelden windowAnmelden = new WindowAnmelden();
+            windowAnmelden.Owner = this;
             windowAnmelden.ShowDialog();
+            if (windowAnmelden.DialogResult == true)
+            {
+                MainUser = windowAnmelden.MainUser;
+                LabelName.Content = MainUser.Name;
+                LabelKontostand.Content = $"{MainUser.Kontostand} €";
+                EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

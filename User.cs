@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using SQLitePCL;
 using System.Threading.Tasks;
+using System.Security.RightsManagement;
 using Microsoft.Data.Sqlite;
+using System.Security.Cryptography;
 
 namespace BankingSystem
 {
@@ -27,7 +29,7 @@ namespace BankingSystem
 
         public static List<User> GetUsers()
         {
-            using (SqliteConnection connection = new SqliteConnection("Data Source=Assets/bank.db"))
+            using (SqliteConnection connection = new SqliteConnection("Data Source=assets/bank.db"))
             {
 
                 connection.Open();
@@ -42,11 +44,59 @@ namespace BankingSystem
                 {
                     while (reader.Read())
                     {
-                        User user = new User(reader.GetInt16(1), reader.GetString(2), reader.GetString(3), reader.GetDouble(4), reader.GetString(5));
+                        User user = new User(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3), reader.GetString(4));
                         Users.Add(user);
                     }
                 }
                 return Users;
+            }
+        }
+
+        public static string PasswordToHash(string Password)
+        {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(Password);
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    builder.Append(hashBytes[i].ToString("x2"));
+                }
+
+                // Gib den Hash-Wert aus
+                string hashString = builder.ToString();
+                return hashString;
+            }
+        }
+
+        public void SaveUser()
+        {
+            using (SqliteConnection connection = new SqliteConnection("Data Source=assets/bank.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = connection.CreateCommand();
+
+                command.CommandText = $"INSERT INTO tblUser(name, standort, kontostand, passwort) VALUES('{Name}', '{Standort}', {Kontostand}, '{Passwort}');";
+
+                int tmp = command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteUser()
+        {
+            using (SqliteConnection connection = new SqliteConnection("Data Source=assets/bank.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = connection.CreateCommand();
+
+                command.CommandText = $"DELETE FROM tblUser WHERE id = {ID};";
+
+                int tmp = command.ExecuteNonQuery();
             }
         }
     }
