@@ -32,7 +32,7 @@ namespace BankingSystem
 
         public void initMain()
         {
-            this.LabelKontostand.Content = $"{KontoStandHolen(MainUser.ID)} €";
+            this.LabelKontostand.Content = $"{MainUser.Kontostand} €";
             EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
         }
 
@@ -173,7 +173,7 @@ namespace BankingSystem
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             DrawAnmelden();
-            initMain();
+            // initMain();
         }
 
         public void DrawAnmelden()
