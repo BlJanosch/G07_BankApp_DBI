@@ -41,15 +41,20 @@ namespace BankingSystem
                 {
                     while (reader.Read())
                     {
-                        if (reader.GetInt16(2) == user.ID)
+                        if (reader.GetInt16(1) == user.ID)
                         {
-                            Eintrag eintrag = new Eintrag(reader.GetInt16(1), reader.GetInt16(2), reader.GetDateTime(3), reader.GetDouble(4), reader.GetString(5));
+                            
+                            Eintrag eintrag = new Eintrag(reader.GetInt16(0), reader.GetInt16(1), reader.GetDateTime(2), reader.GetDouble(3), reader.GetString(4));
                             Einträge.Add(eintrag);
                         }
                     }
                 }
                 return Einträge;
             }
+        }
+        public override string ToString()
+        {
+            return $"{Datum}:  {Betrag} € - {Beschreibung}";
         }
     }
 }

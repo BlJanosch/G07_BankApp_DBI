@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowGeldUeberweisen" Height="300" Width="400">
+        Title="WindowGeldUeberweisen" Height="320" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -21,7 +21,7 @@
         <TextBox x:Name="TBGeldmenge" Grid.Column="1" Grid.Row="0" Margin="25 35"></TextBox>
 
         <Label Content="User eingeben:" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="16"></Label>
-        <TextBox x:Name="TBUser" Grid.Column="1" Grid.Row="1" Margin="25 35"></TextBox>
+        <ComboBox x:Name="TBUser" Grid.Column="1" Grid.Row="1" Margin="25 35"></ComboBox>
         
         <Button x:Name="ButtonAbbrechen" Content="Abbrechen" Grid.Column="0" Grid.Row="2" Margin="35" IsCancel="True"></Button>
         <Button x:Name="ButtonOK" Content="OK" Grid.Column="1" Grid.Row="2" Margin="35" Click="ButtonOK_Click"></Button>

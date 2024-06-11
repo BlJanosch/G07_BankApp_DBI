@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Data.Sqlite;
 
 namespace BankingSystem
 {
@@ -24,13 +25,44 @@ namespace BankingSystem
         public WindowGeldUeberweisen()
         {
             InitializeComponent();
+            foreach (string item in getUsernames())
+            {
+                TBUser.Items.Add(item);
+            }
+        }
+
+        public List<string> getUsernames()
+        {
+            List<string> strings = new List<string>();
+            using (SqliteConnection connection =
+                new SqliteConnection("Data Source=assets/bank.db"))
+            {
+
+                connection.Open();
+
+                SqliteCommand command = connection.CreateCommand();
+
+                command.CommandText =
+                    $"SELECT name from tblUser";
+
+
+
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        strings.Add(reader.GetString(0));
+                    }
+                }
+                return strings;
+            }
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (TBUser.Text != "")
+                if (TBUser.SelectedIndex != -1)
                 {
                     try
                     {

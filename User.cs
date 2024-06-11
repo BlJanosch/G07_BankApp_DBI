@@ -98,6 +98,17 @@ namespace BankingSystem
 
                 int tmp = command.ExecuteNonQuery();
             }
+
+            using (SqliteConnection connection = new SqliteConnection("Data Source=assets/bank.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = connection.CreateCommand();
+
+                command.CommandText = $"DELETE FROM tblEintrag WHERE fkUserID = {ID};";
+
+                int tmp = command.ExecuteNonQuery();
+            }
         }
     }
 }

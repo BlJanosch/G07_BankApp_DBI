@@ -27,17 +27,37 @@ namespace BankingSystem
         public MainWindow()
         {
             InitializeComponent();
-            initMain();
+            
         }
 
         public void initMain()
         {
-            this.LabelKontostand.Content = KontoStandHolen(MainUser.ID);
+            this.LabelKontostand.Content = $"{KontoStandHolen(MainUser.ID)} €";
+            EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
         }
+
+
+
 
         private void ButtonGluecksspiel_Click(object sender, RoutedEventArgs e)
         {
+            WindowGluecksspiel windowGluecksspiel = new WindowGluecksspiel();
+            windowGluecksspiel.ShowDialog();
+            if (windowGluecksspiel.DialogResult == true)
+            {
+                if (windowGluecksspiel.Gluecksspielausgang == true)
+                {
+                    KontostandVeraendern(KontoStandHolen(MainUser.ID), Convert.ToDouble(windowGluecksspiel.Endergebnis), MainUser.ID);
+                    EintragErstellen(MainUser.ID, DateTime.Now, Convert.ToDouble(windowGluecksspiel.Endergebnis), $"Geld gewonnen bei Glücksspiel");
 
+                }
+                else
+                {
+                    KontostandVeraendern(KontoStandHolen(MainUser.ID), Convert.ToDouble(windowGluecksspiel.Endergebnis) * (-1), MainUser.ID);
+                    EintragErstellen(MainUser.ID, DateTime.Now, Convert.ToDouble(windowGluecksspiel.Endergebnis) * (-1), $"Geld verloren bei Glücksspiel");
+                }
+                initMain();
+            }
         }
 
         private void ButtonAbheben_Click(object sender, RoutedEventArgs e)
@@ -47,6 +67,7 @@ namespace BankingSystem
             if (windowGeldAbheben.DialogResult == true)
             {
                 KontostandVeraendern(KontoStandHolen(MainUser.ID), windowGeldAbheben.Geldmenge*(-1), MainUser.ID);
+                EintragErstellen(MainUser.ID, DateTime.Now, windowGeldAbheben.Geldmenge * (-1), $"Geld abgehoben");
             }
             initMain();
 
@@ -60,8 +81,11 @@ namespace BankingSystem
             {
                 KontostandVeraendern(KontoStandHolen(UsernameTOUserID(windowGeldUeberweisen.Username)), windowGeldUeberweisen.Geldmenge, UsernameTOUserID(windowGeldUeberweisen.Username));
                 KontostandVeraendern(KontoStandHolen(MainUser.ID), windowGeldUeberweisen.Geldmenge *(-1), MainUser.ID);
+                
+                EintragErstellen(MainUser.ID, DateTime.Now, windowGeldUeberweisen.Geldmenge * (-1), $"Geld überwiesen an {windowGeldUeberweisen.Username}");
                 initMain();
             }
+            
         }
 
 
@@ -149,6 +173,7 @@ namespace BankingSystem
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             DrawAnmelden();
+            initMain();
         }
 
         public void DrawAnmelden()
@@ -164,10 +189,28 @@ namespace BankingSystem
                 LabelName.Content = MainUser.Name;
                 LabelKontostand.Content = $"{MainUser.Kontostand} €";
                 EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
+                initMain();
             }
             else
             {
                 this.Close();
+            }
+        }
+
+        public void EintragErstellen(int fkUserID, DateTime date, double Betrag, string Beschreibung)
+        {
+            using (SqliteConnection connection =
+                new SqliteConnection("Data Source=assets/bank.db"))
+            {
+
+                connection.Open();
+
+                SqliteCommand command = connection.CreateCommand();
+
+                command.CommandText =
+                    $"insert into tblEintrag (fkUserID, datum, betrag, beschreibung) values ({fkUserID}, '{date}', {Betrag}, '{Beschreibung}')";
+
+                command.ExecuteNonQuery();
             }
         }
     }
