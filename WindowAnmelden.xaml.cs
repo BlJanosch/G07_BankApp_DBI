@@ -161,7 +161,7 @@ namespace BankingSystem
             users = User.GetUsers();
             if (users == null || users.Count == 0)
             {
-                ButtonAnmelden.IsEnabled = false;
+                ButtonAnmeldenNew.IsEnabled = false;
             }
         }
 
