@@ -9,5 +9,6 @@
     <Grid>
         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 -50 0 0">Deleting Account</Label>
         <Label VerticalAlignment="Center" HorizontalAlignment="Center">Loading ...</Label>
+        <ProgressBar VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="20" Width="160" Margin="0,0,0,20" x:Name="ProgressBar"></ProgressBar>
     </Grid>
 </Window>

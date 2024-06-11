@@ -24,9 +24,18 @@ namespace BankingSystem
         {
             InitializeComponent();
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2.3);
+            timer.Interval = TimeSpan.FromSeconds(2);
             timer.Tick += Timer_Tick;
             timer.Start();
+            DispatcherTimer timerProgessBar = new DispatcherTimer();
+            timerProgessBar.Interval = TimeSpan.FromSeconds(0.5);
+            timerProgessBar.Tick += TimerProgessBar_Tick;
+            timerProgessBar.Start();
+        }
+
+        private void TimerProgessBar_Tick(object? sender, EventArgs e)
+        {
+            ProgressBar.Value += 25;
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
