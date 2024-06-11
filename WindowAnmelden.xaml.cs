@@ -289,6 +289,11 @@ namespace BankingSystem
                     MainUser = new User(users[counter].ID, NameInput.Text, users[counter].Standort, users[counter].Kontostand, users[counter].Passwort);
                     DialogResult = true;
                 }
+                else
+                {
+                    MessageBox.Show("Eingabe überprüfen", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                    break;
+                }
                 counter++;
             }
         }
