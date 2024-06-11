@@ -162,6 +162,8 @@ namespace BankingSystem
         private void ButtonKontoLöschen_Click(object sender, RoutedEventArgs e)
         {
             MainUser.DeleteUser();
+            Ladefenster ladefenster = new Ladefenster();
+            ladefenster.ShowDialog();
             DrawAnmelden();
         }
 
@@ -173,7 +175,7 @@ namespace BankingSystem
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             DrawAnmelden();
-            initMain();
+            // initMain();
         }
 
         public void DrawAnmelden()
