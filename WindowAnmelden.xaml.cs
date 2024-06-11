@@ -158,6 +158,11 @@ namespace BankingSystem
             ButtonRegestrierenNew.Click += ButtonRegistrieren_Click;
             MainGrid.Children.Add(ButtonAnmeldenNew);
             MainGrid.Children.Add(ButtonRegestrierenNew);
+            users = User.GetUsers();
+            if (users == null || users.Count == 0)
+            {
+                ButtonAnmelden.IsEnabled = false;
+            }
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -285,6 +290,15 @@ namespace BankingSystem
                     DialogResult = true;
                 }
                 counter++;
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            users = User.GetUsers();
+            if (users == null || users.Count == 0)
+            {
+                ButtonAnmelden.IsEnabled = false;
             }
         }
     }

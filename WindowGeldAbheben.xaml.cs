@@ -20,10 +20,11 @@ namespace BankingSystem
     public partial class WindowGeldAbheben : Window
     {
         public double Geldmenge = 0;
-
-        public WindowGeldAbheben()
+        public User user;
+        public WindowGeldAbheben(User user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -31,14 +32,14 @@ namespace BankingSystem
             try
             {
                 Geldmenge = Convert.ToDouble(TBGeldmenge.Text);
-                if (Geldmenge >= 0)
+                if (Geldmenge >= 0 && user.Kontostand >= Geldmenge)
                 {
                     DialogResult = true;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Achtung! Nur positive Zahlen erlaubt!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Stop);
+                    MessageBox.Show("Achtung! Nur positive Zahlen erlaubt und Kontostand überprüfen!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
             }
             catch

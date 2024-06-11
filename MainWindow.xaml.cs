@@ -32,7 +32,7 @@ namespace BankingSystem
 
         public void initMain()
         {
-            this.LabelKontostand.Content = $"{KontoStandHolen(MainUser.ID)} €";
+            this.LabelKontostand.Content = $"{MainUser.Kontostand} €";
             EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
         }
 
@@ -41,19 +41,21 @@ namespace BankingSystem
 
         private void ButtonGluecksspiel_Click(object sender, RoutedEventArgs e)
         {
-            WindowGluecksspiel windowGluecksspiel = new WindowGluecksspiel();
+            WindowGluecksspiel windowGluecksspiel = new WindowGluecksspiel(MainUser);
             windowGluecksspiel.ShowDialog();
             if (windowGluecksspiel.DialogResult == true)
             {
                 if (windowGluecksspiel.Gluecksspielausgang == true)
                 {
-                    KontostandVeraendern(KontoStandHolen(MainUser.ID), Convert.ToDouble(windowGluecksspiel.Endergebnis), MainUser.ID);
+                    MainUser.Kontostand += Convert.ToDouble(windowGluecksspiel.Endergebnis);
+                    KontostandVeraendern(MainUser, MainUser.ID);
                     EintragErstellen(MainUser.ID, DateTime.Now, Convert.ToDouble(windowGluecksspiel.Endergebnis), $"Geld gewonnen bei Glücksspiel");
 
                 }
                 else
                 {
-                    KontostandVeraendern(KontoStandHolen(MainUser.ID), Convert.ToDouble(windowGluecksspiel.Endergebnis) * (-1), MainUser.ID);
+                    MainUser.Kontostand -= Convert.ToDouble(windowGluecksspiel.Endergebnis);
+                    KontostandVeraendern(MainUser, MainUser.ID);
                     EintragErstellen(MainUser.ID, DateTime.Now, Convert.ToDouble(windowGluecksspiel.Endergebnis) * (-1), $"Geld verloren bei Glücksspiel");
                 }
                 initMain();
@@ -62,11 +64,12 @@ namespace BankingSystem
 
         private void ButtonAbheben_Click(object sender, RoutedEventArgs e)
         {
-            WindowGeldAbheben windowGeldAbheben = new WindowGeldAbheben();
+            WindowGeldAbheben windowGeldAbheben = new WindowGeldAbheben(MainUser);
             windowGeldAbheben.ShowDialog();
             if (windowGeldAbheben.DialogResult == true)
             {
-                KontostandVeraendern(KontoStandHolen(MainUser.ID), windowGeldAbheben.Geldmenge*(-1), MainUser.ID);
+                MainUser.Kontostand -= windowGeldAbheben.Geldmenge;
+                KontostandVeraendern(MainUser, MainUser.ID);
                 EintragErstellen(MainUser.ID, DateTime.Now, windowGeldAbheben.Geldmenge * (-1), $"Geld abgehoben");
             }
             initMain();
@@ -75,22 +78,28 @@ namespace BankingSystem
 
         private void ButtonÜberweisen_Click(object sender, RoutedEventArgs e)
         {
-            WindowGeldUeberweisen windowGeldUeberweisen = new WindowGeldUeberweisen();
+            WindowGeldUeberweisen windowGeldUeberweisen = new WindowGeldUeberweisen(MainUser);
             windowGeldUeberweisen.ShowDialog();
             if (windowGeldUeberweisen.DialogResult == true)
             {
-                KontostandVeraendern(KontoStandHolen(UsernameTOUserID(windowGeldUeberweisen.Username)), windowGeldUeberweisen.Geldmenge, UsernameTOUserID(windowGeldUeberweisen.Username));
-                KontostandVeraendern(KontoStandHolen(MainUser.ID), windowGeldUeberweisen.Geldmenge *(-1), MainUser.ID);
+                User otherUser = GetUser(UsernameTOUserID(windowGeldUeberweisen.Username));
+                otherUser.Kontostand += windowGeldUeberweisen.Geldmenge;
+                KontostandVeraendern(otherUser, UsernameTOUserID(windowGeldUeberweisen.Username));
+                MainUser.Kontostand -= windowGeldUeberweisen.Geldmenge;
+                KontostandVeraendern(MainUser, MainUser.ID);
                 
                 EintragErstellen(MainUser.ID, DateTime.Now, windowGeldUeberweisen.Geldmenge * (-1), $"Geld überwiesen an {windowGeldUeberweisen.Username}");
+                EintragErstellen(otherUser.ID, DateTime.Now, windowGeldUeberweisen.Geldmenge, $"Geld bekommen von {MainUser.Name}");
+
                 initMain();
             }
             
         }
 
 
-        public double KontoStandHolen(int UserID)
+        public User GetUser(int UserID)
         {
+            User user;
             using (SqliteConnection connection =
                 new SqliteConnection("Data Source=assets/bank.db"))
             {
@@ -100,7 +109,7 @@ namespace BankingSystem
                 SqliteCommand command = connection.CreateCommand();
 
                 command.CommandText =
-                    $"SELECT kontostand FROM tblUser WHERE id = {UserID}";
+                    $"SELECT * FROM tblUser WHERE id = {UserID}";
 
 
 
@@ -108,11 +117,12 @@ namespace BankingSystem
                 {
                     while (reader.Read())
                     {
-                        return reader.GetDouble(0);
+                        user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3), reader.GetString(4));
+                        return user;
                     }
                 }
-                return 0;
             }
+            return null;
         }
 
         public int UsernameTOUserID(string Username)
@@ -141,7 +151,7 @@ namespace BankingSystem
             }
         }
 
-        public void KontostandVeraendern(double aktuellerKontostand, double veraenderung, int UserID)
+        public void KontostandVeraendern(User user, int UserID)
         {
             using (SqliteConnection connection =
                 new SqliteConnection("Data Source=assets/bank.db"))
@@ -152,7 +162,7 @@ namespace BankingSystem
                 SqliteCommand command = connection.CreateCommand();
 
                 command.CommandText =
-                    $"UPDATE tblUser SET kontostand = {aktuellerKontostand+veraenderung} WHERE id = {UserID}";
+                    $"UPDATE tblUser SET kontostand = {user.Kontostand} WHERE id = {UserID}";
 
                 command.ExecuteNonQuery();
             }
@@ -161,28 +171,39 @@ namespace BankingSystem
 
         private void ButtonKontoLöschen_Click(object sender, RoutedEventArgs e)
         {
+            int AnzUsers = User.GetUsers().Count - 1;  
             MainUser.DeleteUser();
             Ladefenster ladefenster = new Ladefenster();
             ladefenster.ShowDialog();
-            DrawAnmelden();
+
+            if (AnzUsers <= 0)
+            {
+                DrawAnmelden(false);
+            }
+            else
+            {
+                DrawAnmelden(true);
+            }
+            
         }
 
         private void ButtonKontoAbmelden_Click(object sender, RoutedEventArgs e)
         {
-            DrawAnmelden();
+            DrawAnmelden(true);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DrawAnmelden();
+            DrawAnmelden(true);
             // initMain();
         }
 
-        public void DrawAnmelden()
+        public void DrawAnmelden(bool ButtonEnabled)
         {
             LabelKontostand.Content = "";
             LabelName.Content = "";
             WindowAnmelden windowAnmelden = new WindowAnmelden();
+            windowAnmelden.ButtonAnmelden.IsEnabled = ButtonEnabled;
             windowAnmelden.Owner = this;
             windowAnmelden.ShowDialog();
             if (windowAnmelden.DialogResult == true)
