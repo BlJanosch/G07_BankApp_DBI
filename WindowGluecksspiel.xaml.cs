@@ -22,7 +22,8 @@ namespace BankingSystem
     {
         public bool Gluecksspielausgang = false;
         public double Endergebnis = 0;
-        public WindowGluecksspiel()
+        public User MainUser;
+        public WindowGluecksspiel(User mainUser)
         {
             InitializeComponent();
             LabelInfo.Content = "leicht: niedriges Verlustrisiko (20%) - kleine Gewinne (100%)\nmittel: mittleres Risiko (50%) - mittlere Gewinne (200%)\nschwer: hohes Risiko (90%) - hohe Gewinne (500%)";
@@ -30,11 +31,12 @@ namespace BankingSystem
             LabelInfo.VerticalContentAlignment = VerticalAlignment.Center;
             LabelInfo.FontSize = 12;
             LabelInfo.FontWeight = FontWeights.Bold;
+            MainUser = mainUser;
         }
 
         private void ButtonOK_Click_1(object sender, RoutedEventArgs e)
         {
-            if (TBEinsatz.Text != "")
+            if (TBEinsatz.Text != "" && MainUser.Kontostand >= Convert.ToDouble(TBEinsatz.Text))
             {
                 try
                 {
@@ -91,7 +93,7 @@ namespace BankingSystem
             }
             else
             {
-                MessageBox.Show("Bitte alle Felder ausfüllen", "Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Bitte alle Felder ausfüllen und Kontostand überprüfen", "Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

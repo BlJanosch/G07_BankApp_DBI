@@ -22,9 +22,11 @@ namespace BankingSystem
     {
         public double Geldmenge;
         public string Username;
-        public WindowGeldUeberweisen()
+        public User user;
+        public WindowGeldUeberweisen(User user)
         {
             InitializeComponent();
+            this.user = user;
             foreach (string item in getUsernames())
             {
                 TBUser.Items.Add(item);
@@ -51,7 +53,10 @@ namespace BankingSystem
                 {
                     while (reader.Read())
                     {
-                        strings.Add(reader.GetString(0));
+                        if (reader.GetString(0) != user.Name)
+                        {
+                            strings.Add(reader.GetString(0));
+                        }
                     }
                 }
                 return strings;
@@ -68,14 +73,14 @@ namespace BankingSystem
                     {
                         Geldmenge = Convert.ToDouble(TBGeldmenge.Text);
                         Username = TBUser.Text;
-                        if (Geldmenge >= 0)
+                        if (Geldmenge >= 0 && user.Kontostand >= Geldmenge)
                         {
                             DialogResult = true;
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Achtung! Nur positive Zahlen erlaubt!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Stop);
+                            MessageBox.Show("Achtung! Nur positive Zahlen erlaubt und Kontostand überprüfen!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Stop);
                         }
                     }
                     catch
