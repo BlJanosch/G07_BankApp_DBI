@@ -80,7 +80,7 @@ namespace BankingSystem
 
                 SqliteCommand command = connection.CreateCommand();
 
-                command.CommandText = $"INSERT INTO tblUser(name, standort, kontostand, passwort) VALUES('{Name}', '{Standort}', {Kontostand}, '{Passwort}');";
+                command.CommandText = $"INSERT INTO tblUser(id, name, standort, kontostand, passwort) VALUES({ID}, '{Name}', '{Standort}', {Kontostand}, '{Passwort}');";
 
                 int tmp = command.ExecuteNonQuery();
             }

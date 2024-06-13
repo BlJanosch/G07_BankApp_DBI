@@ -220,7 +220,7 @@ namespace BankingSystem
             }
         }
 
-        public void EintragErstellen(int fkUserID, DateTime date, double Betrag, string Beschreibung)
+        public static void EintragErstellen(int fkUserID, DateTime date, double Betrag, string Beschreibung)
         {
             using (SqliteConnection connection =
                 new SqliteConnection("Data Source=assets/bank.db"))

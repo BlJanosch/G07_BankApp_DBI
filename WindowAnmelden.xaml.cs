@@ -191,6 +191,7 @@ namespace BankingSystem
                 }
                 MainUser = new User(id, NameInput.Text, StandortInput.Text, 50, User.PasswordToHash(PasswortInput.Text));
                 MainUser.SaveUser();
+                MainWindow.EintragErstellen(MainUser.ID, DateTime.Now, 50, $"Startbonus");
                 DialogResult = true;
             }
         }
