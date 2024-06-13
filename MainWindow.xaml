@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
 
 
         <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0" Margin="3">
-            <Button Width="100" Margin="5 20 20 20" Content="Glücksspiel" x:Name="ButtonGluecksspiel" Click="ButtonGluecksspiel_Click"></Button>
+            <Button Width="100" Margin="30 20 20 20" Content="Glücksspiel" x:Name="ButtonGluecksspiel" Click="ButtonGluecksspiel_Click"></Button>
             <Button Width="100" Margin="0,20,20,20" Content="Geld abheben" x:Name="ButtonAbheben" Click="ButtonAbheben_Click"></Button>
             <Button Width="100" Margin="0,20,20,20" Content="Geld überweisen" x:Name="ButtonÜberweisen" Click="ButtonÜberweisen_Click"></Button>
             <Button Width="100" Margin="0,20,20,20" Content="Statistik" x:Name="ButtonStatistik" Click="ButtonStatistik_Click"></Button>

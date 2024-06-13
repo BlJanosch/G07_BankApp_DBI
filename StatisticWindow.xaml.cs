@@ -78,7 +78,7 @@ namespace BankingSystem
                 Border border = new Border()
                 {
                     BorderBrush = Brushes.Black,
-                    BorderThickness = new Thickness(2),
+                    BorderThickness = new Thickness(1),
                 };
                 Rectangle rectangle = new Rectangle()
                 {
@@ -101,7 +101,7 @@ namespace BankingSystem
                 Border border = new Border()
                 {
                     BorderBrush = Brushes.Black,
-                    BorderThickness = new Thickness(2),
+                    BorderThickness = new Thickness(1),
                 };
                 Rectangle rectangle = new Rectangle()
                 {
