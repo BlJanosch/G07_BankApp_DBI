@@ -1,0 +1,34 @@
+﻿<Window x:Class="BankingSystem.StatisticWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankingSystem"
+        mc:Ignorable="d"
+        Title="StatisticWindow" Height="400" Width="600" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="45">Statistik</Label>
+        <Grid Grid.Row="1">
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" x:Name="LegendenGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Ellipse x:Name="Wert1Ellipse" Height="10" Width="10" Fill="Red" VerticalAlignment="Center" HorizontalAlignment="Left"></Ellipse>
+                <Ellipse x:Name="Wert2Ellipse" Height="10" Width="10" Fill="Orange" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1"></Ellipse>
+                <Label Grid.Column="1" VerticalAlignment="Center">Ausgaben</Label>
+                <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">Einkünfte</Label>
+            </Grid>
+            <Rectangle x:Name="Wert1Rect" Width="40" Height="0" Fill="Red" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Bottom"></Rectangle>
+            <Rectangle x:Name="Wert2Rect" Width="40" Height="0" Fill="Orange" Margin="80,0,0,0" VerticalAlignment="Bottom"></Rectangle>
+        </Grid>
+    </Grid>
+</Window>
