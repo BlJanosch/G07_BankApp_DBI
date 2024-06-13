@@ -27,8 +27,8 @@
                 <Label Grid.Column="1" VerticalAlignment="Center">Ausgaben</Label>
                 <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">Einkünfte</Label>
             </Grid>
-            <Rectangle x:Name="Wert1Rect" Width="40" Height="0" Fill="Red" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Bottom"></Rectangle>
-            <Rectangle x:Name="Wert2Rect" Width="40" Height="0" Fill="Orange" Margin="80,0,0,0" VerticalAlignment="Bottom"></Rectangle>
+            <Grid x:Name="AusgabenGrid" Width="40" Height="0" Background="Red" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Bottom"></Grid>
+            <Grid x:Name="EinkünfteGrid" Width="40" Height="0" Background="Orange" Margin="80,0,0,0" VerticalAlignment="Bottom"></Grid>
         </Grid>
     </Grid>
 </Window>

@@ -240,7 +240,7 @@ namespace BankingSystem
         private void ButtonStatistik_Click(object sender, RoutedEventArgs e)
         {
             StatisticWindow statisticWindow = new StatisticWindow(MainUser);
-            statisticWindow.DrawStatistic();
+            statisticWindow.GetGridElements();
             statisticWindow.ShowDialog();
         }
     }
