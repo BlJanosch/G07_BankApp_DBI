@@ -43,8 +43,8 @@ namespace BankingSystem
                     {
                         if (reader.GetInt16(1) == user.ID)
                         {
-                            
-                            Eintrag eintrag = new Eintrag(reader.GetInt16(0), reader.GetInt16(1), reader.GetDateTime(2), reader.GetDouble(3), reader.GetString(4));
+                            DateTime date = Convert.ToDateTime(reader.GetString(2));
+                            Eintrag eintrag = new Eintrag(reader.GetInt16(0), reader.GetInt16(1), date, reader.GetDouble(3), reader.GetString(4));
                             Einträge.Add(eintrag);
                         }
                     }

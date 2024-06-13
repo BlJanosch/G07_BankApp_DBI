@@ -282,14 +282,16 @@ namespace BankingSystem
         {
             users = User.GetUsers();
             int counter = 0;
+            bool UserExists = false;
             foreach (User user in users)
             {
                 if (user.Name == NameInput.Text && user.Passwort == User.PasswordToHash(PasswortInput.Text))
                 {
                     MainUser = new User(users[counter].ID, NameInput.Text, users[counter].Standort, users[counter].Kontostand, users[counter].Passwort);
                     DialogResult = true;
+                    UserExists = true;
                 }
-                else
+                else if (user.Name.Count() == counter - 1 && !UserExists)
                 {
                     MessageBox.Show("Eingabe überprüfen", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
                     break;
