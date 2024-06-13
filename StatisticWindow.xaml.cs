@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,35 +32,6 @@ namespace BankingSystem
             InitializeComponent();
             this.user = user;
         }
-
-        //public void DrawStatistic()
-        //{
-        //    double Ausgaben = 0;
-        //    double Einkünfte = 0;
-        //    List<Eintrag> einträge = Eintrag.GetEinträge(user);
-        //    foreach (Eintrag eintrag in einträge)
-        //    {
-        //        if (eintrag.Betrag < 0)
-        //        {
-        //            Ausgaben += eintrag.Betrag;
-        //        }
-        //        else
-        //        {
-        //            Einkünfte += eintrag.Betrag;
-        //        }
-        //    }
-
-        //    if (Einkünfte > Ausgaben)
-        //    {
-        //        Wert1Rect.Height = (Ausgaben * (-1) / Einkünfte) * MaxHeigt;
-        //        Wert2Rect.Height = MaxHeigt;
-        //    }
-        //    else
-        //    {
-        //        Wert2Rect.Height = (Einkünfte / Ausgaben * (-1)) * MaxHeigt;
-        //        Wert1Rect.Height = MaxHeigt;
-        //    }
-        //}
 
         public void GetGridElements()
         {
@@ -96,6 +68,7 @@ namespace BankingSystem
                 EinkünfteGrid.Height = (EinkünfteGesamt / AusgabenGesamt * (-1)) * MaxHeigt;
                 AusgabenGrid.Height = MaxHeigt;
             }
+            int counter = 0;
             foreach (double ausgabe in Ausgaben)
             {
                 RowDefinition row = new RowDefinition()
@@ -113,10 +86,12 @@ namespace BankingSystem
                     Fill = Brushes.Red,
                 };
                 border.Child = rectangle;
-                Grid.SetRow(border, Ausgaben.IndexOf(ausgabe));
+                Grid.SetRow(border, counter);
                 AusgabenGrid.RowDefinitions.Add(row);
                 AusgabenGrid.Children.Add(border);
+                counter++;
             }
+            counter = 0;
             foreach (double einkunft in Einkünfte)
             {
                 RowDefinition row = new RowDefinition()
@@ -134,9 +109,10 @@ namespace BankingSystem
                     Fill = Brushes.Orange,
                 };
                 border.Child = rectangle;
-                Grid.SetRow(border, Einkünfte.IndexOf(einkunft));
+                Grid.SetRow(border, counter);
                 EinkünfteGrid.RowDefinitions.Add(row);
                 EinkünfteGrid.Children.Add(border);
+                counter++;
             }
         }
 
