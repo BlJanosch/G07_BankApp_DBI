@@ -53,7 +53,7 @@ namespace BankingSystem
                 {
                     while (reader.Read())
                     {
-                        if (reader.GetString(0) != user.Name)
+                        if (reader.GetString(0) != user.Name && reader.GetString(0) != "Admin")
                         {
                             strings.Add(reader.GetString(0));
                         }

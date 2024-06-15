@@ -304,7 +304,7 @@ namespace BankingSystem
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             users = User.GetUsers();
-            if (users == null || users.Count == 0)
+            if ((users == null || users.Count == 0) || (users[0].Name == User.Admin.Name && users.Count == 1))
             {
                 ButtonAnmelden.IsEnabled = false;
             }

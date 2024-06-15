@@ -33,11 +33,18 @@ namespace BankingSystem
         public void initMain()
         {
             this.LabelKontostand.Content = $"{MainUser.Kontostand} €";
-            EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
+            if (MainUser.Name == User.Admin.Name)
+            {
+                EintragListe.ItemsSource = AdminEintrag.GetAdminEinträge();
+            }
+            else
+            {
+                EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
+            }
         }
 
 
-
+        // JOIN Abfrage: select name, standort, kontostand, datum, betrag, beschreibung from tblUser join tblEintrag on tblUser.id = tblEintrag.fkUserID;
 
         private void ButtonGluecksspiel_Click(object sender, RoutedEventArgs e)
         {
@@ -204,14 +211,36 @@ namespace BankingSystem
             LabelName.Content = "";
             WindowAnmelden windowAnmelden = new WindowAnmelden();
             windowAnmelden.ButtonAnmelden.IsEnabled = ButtonEnabled;
+            List<User> Users = User.GetUsers();
+            if (ButtonEnabled && Users[0].Name != User.Admin.Name)
+            {
+                User.CreatAdminUser();
+            }
             windowAnmelden.Owner = this;
             windowAnmelden.ShowDialog();
             if (windowAnmelden.DialogResult == true)
             {
                 MainUser = windowAnmelden.MainUser;
+                if (MainUser.Name == User.Admin.Name)
+                {
+                    ButtonGluecksspiel.IsEnabled = false;
+                    ButtonAbheben.IsEnabled = false;
+                    ButtonÜberweisen.IsEnabled = false;
+                    ButtonStatistik.IsEnabled = false;
+                    ButtonKontoLöschen.IsEnabled = false;
+                    EintragListe.ItemsSource = AdminEintrag.GetAdminEinträge();
+                }
+                else
+                {
+                    ButtonGluecksspiel.IsEnabled = true;
+                    ButtonAbheben.IsEnabled = true;
+                    ButtonÜberweisen.IsEnabled = true;
+                    ButtonStatistik.IsEnabled = true;
+                    ButtonKontoLöschen.IsEnabled = true;
+                    EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
+                }
                 LabelName.Content = MainUser.Name;
                 LabelKontostand.Content = $"{MainUser.Kontostand} €";
-                EintragListe.ItemsSource = Eintrag.GetEinträge(MainUser);
                 initMain();
             }
             else
@@ -242,6 +271,18 @@ namespace BankingSystem
             StatisticWindow statisticWindow = new StatisticWindow(MainUser);
             statisticWindow.GetGridElements();
             statisticWindow.ShowDialog();
+        }
+
+        private void EintragListe_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (MainUser.Name == User.Admin.Name)
+            {
+                if (EintragListe.SelectedItem != null)
+                {
+                    AdminUserAnsicht adminUserAnsicht = new AdminUserAnsicht(EintragListe.SelectedIndex);
+                    adminUserAnsicht.ShowDialog();
+                }
+            }
         }
     }
 }

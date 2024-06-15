@@ -17,6 +17,7 @@ namespace BankingSystem
         public string Standort;
         public double Kontostand;
         public string Passwort;
+        public static User Admin = new User(0, "Admin", "Default", 0, PasswordToHash("Admin"));
 
         public User(int id, string name, string standort, double kontostand, string passwort)
         {
@@ -106,6 +107,20 @@ namespace BankingSystem
                 SqliteCommand command = connection.CreateCommand();
 
                 command.CommandText = $"DELETE FROM tblEintrag WHERE fkUserID = {ID};";
+
+                int tmp = command.ExecuteNonQuery();
+            }
+        }
+
+        public static void CreatAdminUser()
+        {
+            using (SqliteConnection connection = new SqliteConnection("Data Source=assets/bank.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = connection.CreateCommand();
+
+                command.CommandText = $"INSERT INTO tblUser(id, name, standort, kontostand, passwort) VALUES({Admin.ID}, '{Admin.Name}', '{Admin.Standort}', {Admin.Kontostand}, '{Admin.Passwort}');";
 
                 int tmp = command.ExecuteNonQuery();
             }
