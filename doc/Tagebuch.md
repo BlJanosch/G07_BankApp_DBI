@@ -20,6 +20,8 @@
 |13.06.24|Jannik Längle|StatisticWindow hinzugefügt|
 |13.06.24|Jannik Längle|StatisticWindow verbessert|
 |13.06.24|Jannik Längle|Fixed Bug --> StatisticWindow Anzeigefehler|
+|15.06.24|Jannik Längle|JOIN Abfrage und Admin hinzugefügt|
+|15.06.24|Jannik Längle|Hintergrundfarbe geändert|
 
 ## 21.5.24
 Basic UI wurde erstellt, sowie die Datenbank mit entsprechenden Test-Einträgen. Zudem wurden noch alle Klassen angelegt.
@@ -47,3 +49,5 @@ Der Startbonus wird nun auch als Eintrag gespeichert und dem User angezeigt, fal
 StatisticWindow hinzugefügt, welches die Ausgaben und Einkünfte visualisiert. Dieses wurde noch erweitert, dass man die genauen Werte der Ausgaben oder Einkünfte sieht (einfach darüber hovern).
 Fixed Bug --> Sobald mehr als ein Wert doppelt bei den Ausgaben oder Einkünften vorkam, lagen diese Werte übereinander, da wir `IndexOf` verwendet haben.
 
+## 15.06.24
+JOIN Abfrage `Select name, standort, kontostand, datum, betrag, beschreibung from tblUser join tblEintrag on tblUser.id = tblEintrag.fkUserID;` und den Admin Benutzer hinzugefügt, welcher über alle Daten von allen Nutzern einsehen kann, sowie auf die Statistik des jeweiligen Nutzers. Benutzername: `Admin` Passwort: `Admin`
