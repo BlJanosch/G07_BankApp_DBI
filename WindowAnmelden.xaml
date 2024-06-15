@@ -5,9 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowAnmelden" Height="400" Width="600" Loaded="Window_Loaded">
+        Title="WindowAnmelden" Height="400" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Background="Bisque">
     <Grid x:Name="MainGrid">
-        <Button x:Name="ButtonAnmelden" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,0,0,100" Click="ButtonAnmelden_Click">Anmelden</Button>
-        <Button x:Name="ButtonRegistrieren" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,100,0,0" Click="ButtonRegistrieren_Click">Registrieren</Button>
+        <Button x:Name="ButtonAnmelden" Height="80" FontWeight="Bold" Width="400" HorizontalAlignment="Center" Margin="0,0,0,100" Click="ButtonAnmelden_Click" Content="Anmelden">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                    <Setter Property="Background" Value="#75c746"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#509428"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#595857"></Setter>
+                            <Setter Property="Foreground" Value="#adabaa"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="300" Height="70" CornerRadius="7" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="ButtonRegistrieren" FontWeight="Bold" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,100,0,0" Click="ButtonRegistrieren_Click" Content="Registrieren">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                    <Setter Property="Background" Value="#75c746"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#509428"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#595857"></Setter>
+                            <Setter Property="Foreground" Value="#adabaa"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="300" Height="70" CornerRadius="7" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

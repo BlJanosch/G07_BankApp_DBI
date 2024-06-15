@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:BankingSystem"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Background="DarkOliveGreen">
+
+        Title="MainWindow" Height="500" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Background="Bisque">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -15,10 +16,116 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0" Margin="3">
-            <Button Width="100" Margin="30 20 20 20" Content="Glücksspiel" x:Name="ButtonGluecksspiel" Click="ButtonGluecksspiel_Click"></Button>
-            <Button Width="100" Margin="0,20,20,20" Content="Geld abheben" x:Name="ButtonAbheben" Click="ButtonAbheben_Click"></Button>
-            <Button Width="100" Margin="0,20,20,20" Content="Geld überweisen" x:Name="ButtonÜberweisen" Click="ButtonÜberweisen_Click"></Button>
-            <Button Width="100" Margin="0,20,20,20" Content="Statistik" x:Name="ButtonStatistik" Click="ButtonStatistik_Click"></Button>
+            <Button Foreground="Black" FontWeight="Bold" Margin="30 20 20 20" Content="Glücksspiel" x:Name="ButtonGluecksspiel" Click="ButtonGluecksspiel_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                        <Setter Property="Background" Value="#75c746"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#509428"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#595857"></Setter>
+
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#adabaa"></Setter>
+                            </Trigger>
+                            
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Foreground="Black" FontWeight="Bold" Margin="0,20,20,20" Content="Geld abheben" x:Name="ButtonAbheben" Click="ButtonAbheben_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                        <Setter Property="Background" Value="#75c746"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#509428"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#595857"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#adabaa"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Foreground="Black" FontWeight="Bold" Margin="0,20,20,20" Content="Geld überweisen" x:Name="ButtonÜberweisen" Click="ButtonÜberweisen_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                        <Setter Property="Background" Value="#75c746"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#509428"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#595857"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#adabaa"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Foreground="Black" FontWeight="Bold" Margin="0,20,20,20" Content="Statistik" x:Name="ButtonStatistik" Click="ButtonStatistik_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                        <Setter Property="Background" Value="#75c746"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#509428"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#595857"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#adabaa"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
 
         <Canvas>
@@ -28,8 +135,52 @@
 
         <ListBox x:Name="EintragListe" Grid.Row="0" Grid.Column="1" Margin="5" Background="GhostWhite" MouseDoubleClick="EintragListe_MouseDoubleClick"></ListBox>
 
-        <Button Grid.Row="1" Grid.Column="1" Height="50" Width="100" x:Name="ButtonKontoLöschen" HorizontalAlignment="Left" Margin="20,0,0,0" Click="ButtonKontoLöschen_Click">Konto löschen</Button>
-        <Button Grid.Row="1" Grid.Column="1" Height="50" Width="100" x:Name="ButtonKontoAbmelden" HorizontalAlignment="Right" Margin="0,0,20,0" Click="ButtonKontoAbmelden_Click">Abmelden</Button>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="ButtonKontoLöschen" HorizontalAlignment="Left" Margin="20,0,0,0" Click="ButtonKontoLöschen_Click" Content="Konto löschen" Foreground="White" FontWeight="Bold">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                    <Setter Property="Background" Value="#c43916"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#822008"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#595857"></Setter>
+                            <Setter Property="Foreground" Value="#adabaa"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="100" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Grid.Row="1"  Grid.Column="1" Foreground="White" FontWeight="Bold"  Margin="0,0,20,0"  x:Name="ButtonKontoAbmelden" HorizontalAlignment="Right" Click="ButtonKontoAbmelden_Click" Content="Abmelden">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="TextElement.FontFamily" Value="Lato"></Setter>
+                    <Setter Property="Background" Value="#2d2085"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#3c2f91"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="100" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
     </Grid>
 </Window>
