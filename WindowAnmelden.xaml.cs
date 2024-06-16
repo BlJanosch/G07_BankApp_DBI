@@ -169,7 +169,7 @@ namespace BankingSystem
                 Height = ButtonAnmelden.Height,
                 Width = ButtonAnmelden.Width,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Content = "Regestrieren",
+                Content = "Registrieren",
                 Margin = new Thickness(0, 100, 0, 0),
             };
             ButtonRegestrierenNew.Click += ButtonRegistrieren_Click;

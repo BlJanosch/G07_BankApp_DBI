@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="Ladefenster" Height="150" Width="200" ResizeMode="NoResize">
+        Title="Ladefenster" Height="150" Width="200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 -50 0 0">Deleting Account</Label>
         <Label VerticalAlignment="Center" HorizontalAlignment="Center">Loading ...</Label>
