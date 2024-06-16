@@ -57,3 +57,6 @@ Button Design erstellt --> `Window.Resources`
 
 ## 16.06.24
 Alle Windows designed sowie Button Desgin vereinheitlicht und bei der Eingabe nur Zahlen zulassen.
+
+## Anleitung
+https://github.com/BlJanosch/G05_BankApp_DBI/blob/master/README.md
