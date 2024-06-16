@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace BankingSystem
@@ -24,6 +25,13 @@ namespace BankingSystem
             buttonStyle.Setters.Add(new Setter(Button.VerticalAlignmentProperty, VerticalAlignment.Center));
             buttonStyle.Setters.Add(new Setter(Button.MarginProperty, new Thickness(0, 20, 0, 0)));
             buttonStyle.Setters.Add(new Setter(Button.FontWeightProperty, FontWeights.Bold));
+
+            Trigger trigger = new Trigger();
+            trigger.Property = Button.IsMouseOverProperty;
+            trigger.Value = true;
+            trigger.Setters.Add(new Setter(Button.BackgroundProperty, Brushes.DarkCyan));
+            trigger.Setters.Add(new Setter(Button.CursorProperty, Cursors.Hand)); // Fügt den Cursor-Wechsel hinzu
+            buttonStyle.Triggers.Add(trigger);
 
             return buttonStyle;
         }
