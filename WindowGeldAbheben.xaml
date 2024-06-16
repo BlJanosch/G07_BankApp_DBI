@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowGeldAbheben" Height="200" Width="400" Background="#333333" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="WindowGeldAbheben" Height="200" Width="430" Background="#333333" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#264826"/>
@@ -29,7 +29,7 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -37,7 +37,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="Geldmenge eingeben:" x:Name="GeldLabel" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="16"></Label>
+        <Label Content="Geldmenge eingeben:" x:Name="GeldLabel" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="20"></Label>
         <TextBox x:Name="TBGeldmenge" Grid.Column="1" Grid.Row="0" Height="50" Width="180" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
 
         <Button x:Name="ButtonAbbrechen" Content="Abbrechen" Grid.Column="0" Grid.Row="1" Height="40" IsCancel="True" Style="{StaticResource ButtonStyle}"></Button>

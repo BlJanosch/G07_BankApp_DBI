@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowGeldUeberweisen" Height="320" Width="400" Background="#333333" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="WindowGeldUeberweisen" Height="320" Width="420" Background="#333333" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#264826"/>

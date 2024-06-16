@@ -212,10 +212,18 @@ namespace BankingSystem
             WindowAnmelden windowAnmelden = new WindowAnmelden();
             windowAnmelden.ButtonAnmelden.IsEnabled = ButtonEnabled;
             List<User> Users = User.GetUsers();
-            if (ButtonEnabled && Users[0].Name != User.Admin.Name)
+            if (Users.Count == 0)
             {
                 User.CreatAdminUser();
             }
+            else
+            {
+                if (ButtonEnabled && Users[0].Name != User.Admin.Name)
+                {
+                    User.CreatAdminUser();
+                }
+            }
+            
             windowAnmelden.Owner = this;
             windowAnmelden.ShowDialog();
             if (windowAnmelden.DialogResult == true)
