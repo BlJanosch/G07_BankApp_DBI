@@ -24,6 +24,7 @@
 |15.06.24|Jannik Längle|Hintergrundfarbe geändert|
 |15.06.24|Noah Fedele|Design erstellt|
 |16.06.24|Jannik Längle|Design erweitert|
+|16.06.24|Jannik Längle|Fixed Bug --> Anmelden|
 
 ## 21.5.24
 Basic UI wurde erstellt, sowie die Datenbank mit entsprechenden Test-Einträgen. Zudem wurden noch alle Klassen angelegt.
@@ -57,6 +58,7 @@ Button Design erstellt --> `Window.Resources`
 
 ## 16.06.24
 Alle Windows designed sowie Button Desgin vereinheitlicht und bei der Eingabe nur Zahlen zulassen.
+Fixed Bug --> Nachdem man ein Konto erstellt hatte (1. Konto in der Datenbank) konnte man Anmelden drücken, obwohl kein User verfügbar war (Admin zählt nicht).
 
 ## Abfragen
 
