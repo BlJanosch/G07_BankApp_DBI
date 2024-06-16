@@ -21,7 +21,7 @@ Here you can double your money or lose all of it! You can choose between differe
 If you want to withdraw money you can do it here by entering the amount of money.
 
 ## Transfer money
-![Transfer money - Image](https://github.com/BlJanosch/G05_BankApp_DBI/assets/167287612/c0d192be-26b0-437d-aaa9-ff9f7a6cc87a)
+![Transfer money - Image](https://github.com/BlJanosch/G05_BankApp_DBI/assets/167287612/9a3020bd-f8ce-491b-a33b-ae2286ac9c8e)
 
 In this window you can send money to other users who use this app.
 
