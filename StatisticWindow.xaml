@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="StatisticWindow" Height="400" Width="600" ResizeMode="NoResize">
+        Title="StatisticWindow" Height="400" Width="600" ResizeMode="NoResize" Background="#333333" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="45">Statistik</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="45" x:Name="StatistikLabel">Statistik</Label>
         <Grid Grid.Row="1">
             <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" x:Name="LegendenGrid">
                 <Grid.RowDefinitions>
@@ -24,8 +24,8 @@
                 </Grid.ColumnDefinitions>
                 <Ellipse x:Name="Wert1Ellipse" Height="10" Width="10" Fill="Red" VerticalAlignment="Center" HorizontalAlignment="Left"></Ellipse>
                 <Ellipse x:Name="Wert2Ellipse" Height="10" Width="10" Fill="Orange" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1"></Ellipse>
-                <Label Grid.Column="1" VerticalAlignment="Center">Ausgaben</Label>
-                <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">Einkünfte</Label>
+                <Label Grid.Column="1" VerticalAlignment="Center" x:Name="AusgabenLabel">Ausgaben</Label>
+                <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" x:Name="EinkünfteLabel">Einkünfte</Label>
             </Grid>
             <Grid x:Name="AusgabenGrid" Width="40" Height="0" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Bottom"></Grid>
             <Grid x:Name="EinkünfteGrid" Width="40" Height="0" Margin="80,0,0,0" VerticalAlignment="Bottom"></Grid>

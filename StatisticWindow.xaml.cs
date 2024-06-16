@@ -116,5 +116,11 @@ namespace BankingSystem
             }
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            StatistikLabel.Style = Styles.GetFontStyle(45);
+            AusgabenLabel.Style = Styles.GetFontStyle(10);
+            EinkünfteLabel.Style = Styles.GetFontStyle(10);
+        }
     }
 }

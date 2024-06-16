@@ -36,65 +36,82 @@ namespace BankingSystem
 
         private void ButtonOK_Click_1(object sender, RoutedEventArgs e)
         {
-            if (TBEinsatz.Text != "" && MainUser.Kontostand >= Convert.ToDouble(TBEinsatz.Text))
+            try
             {
-                try
+                if (TBEinsatz.Text != "" && MainUser.Kontostand >= Convert.ToDouble(TBEinsatz.Text))
                 {
-                    Endergebnis = Convert.ToDouble(TBEinsatz.Text);
-                    Random rnd = new Random();
-                    if (CBUser.Text == "leicht")
+                    try
                     {
-                        int erg = rnd.Next(1, 6);
-                        if (erg <= 4)
+                        Endergebnis = Convert.ToDouble(TBEinsatz.Text);
+                        Random rnd = new Random();
+                        if (CBUser.Text == "leicht")
                         {
-                            this.Gluecksspielausgang = true;
-                            MessageBox.Show($"GEWONNEN!\n Dein Gewinn liegt bei {Endergebnis * 1} €");
+                            int erg = rnd.Next(1, 6);
+                            if (erg <= 4)
+                            {
+                                this.Gluecksspielausgang = true;
+                                MessageBox.Show($"GEWONNEN!\n Dein Gewinn liegt bei {Endergebnis * 1} €");
+                            }
+                            else
+                            {
+                                MessageBox.Show($"VERLOREN!\n Deine Verluste betragen {Endergebnis} €");
+                            }
                         }
-                        else
+                        else if (CBUser.Text == "mittel")
                         {
-                            MessageBox.Show($"VERLOREN!\n Deine Verluste betragen {Endergebnis} €");
+                            int erg = rnd.Next(1, 3);
+                            if (erg == 1)
+                            {
+                                this.Gluecksspielausgang = true;
+                                MessageBox.Show($"GEWONNEN!\n Dein Gewinn liegt bei {Endergebnis * 2} €");
+                                Endergebnis *= 2;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"VERLOREN!\n Deine Verluste betragen {Endergebnis} €");
+                            }
                         }
-                    }
-                    else if (CBUser.Text == "mittel")
-                    {
-                        int erg = rnd.Next(1, 3);
-                        if (erg == 1)
+                        else if (CBUser.Text == "schwer")
                         {
-                            this.Gluecksspielausgang = true;
-                            MessageBox.Show($"GEWONNEN!\n Dein Gewinn liegt bei {Endergebnis * 2} €");
-                            Endergebnis *= 2;
+                            int erg = rnd.Next(1, 11);
+                            if (erg == 1)
+                            {
+                                this.Gluecksspielausgang = true;
+                                MessageBox.Show($"GEWONNEN!\n Dein Gewinn liegt bei {Endergebnis * 5} €");
+                                Endergebnis *= 5;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"VERLOREN!\n Deine Verluste betragen {Endergebnis} €");
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show($"VERLOREN!\n Deine Verluste betragen {Endergebnis} €");
-                        }
-                    }
-                    else if (CBUser.Text == "schwer")
-                    {
-                        int erg = rnd.Next(1, 11);
-                        if (erg == 1)
-                        {
-                            this.Gluecksspielausgang = true;
-                            MessageBox.Show($"GEWONNEN!\n Dein Gewinn liegt bei {Endergebnis * 5} €");
-                            Endergebnis *= 5;
-                        }
-                        else
-                        {
-                            MessageBox.Show($"VERLOREN!\n Deine Verluste betragen {Endergebnis} €");
-                        }
-                    }
-                    this.DialogResult = true;
+                        this.DialogResult = true;
 
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Bitte alle Felder ausfüllen und Kontostand überprüfen", "Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Bitte alle Felder ausfüllen und Kontostand überprüfen", "Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Bitte nur Zahlen eingeben!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            EinsatzLabel.Style = Styles.GetFontStyle(20);
+            RisikoLabel.Style = Styles.GetFontStyle(20);
+            TBEinsatz.Style = Styles.GetTextBoxStyle();
+            CBUser.Style = Styles.GetComboBoxStyle();
+            LabelInfo.Style = Styles.GetFontStyle(10);
         }
     }
 }

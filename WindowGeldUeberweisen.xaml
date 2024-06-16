@@ -5,10 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowGeldUeberweisen" Height="320" Width="400">
+        Title="WindowGeldUeberweisen" Height="320" Width="400" Background="#333333" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#264826"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Aharoni"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="130" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -17,13 +38,13 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="Geldmenge eingeben:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="16"></Label>
-        <TextBox x:Name="TBGeldmenge" Grid.Column="1" Grid.Row="0" Margin="25 35"></TextBox>
+        <Label Content="Geldmenge eingeben:" x:Name="GeldLabel" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="20"></Label>
+        <TextBox x:Name="TBGeldmenge" Grid.Column="1" Grid.Row="0" Margin="20" FontWeight="Bold" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
 
-        <Label Content="User eingeben:" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="16"></Label>
-        <ComboBox x:Name="TBUser" Grid.Column="1" Grid.Row="1" Margin="25 35"></ComboBox>
+        <Label Content="User eingeben:" x:Name="UserLabel" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="20"></Label>
+        <ComboBox x:Name="TBUser" Grid.Column="1" Grid.Row="1" Margin="20" FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></ComboBox>
         
-        <Button x:Name="ButtonAbbrechen" Content="Abbrechen" Grid.Column="0" Grid.Row="2" Margin="35" IsCancel="True"></Button>
-        <Button x:Name="ButtonOK" Content="OK" Grid.Column="1" Grid.Row="2" Margin="35" Click="ButtonOK_Click"></Button>
+        <Button x:Name="ButtonAbbrechen" Content="Abbrechen" Grid.Column="0" Grid.Row="2" Height="40" IsCancel="True" Style="{StaticResource ButtonStyle}"></Button>
+        <Button x:Name="ButtonOK" Content="OK" Grid.Column="1" Grid.Row="2" Click="ButtonOK_Click" Height="40" Style="{StaticResource ButtonStyle}"></Button>
     </Grid>
 </Window>

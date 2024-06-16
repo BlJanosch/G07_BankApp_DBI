@@ -99,5 +99,13 @@ namespace BankingSystem
             }
             
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GeldLabel.Style = Styles.GetFontStyle(20);
+            UserLabel.Style = Styles.GetFontStyle(20);
+            TBGeldmenge.Style = Styles.GetTextBoxStyle();
+            TBUser.Style = Styles.GetComboBoxStyle();
+        }
     }
 }

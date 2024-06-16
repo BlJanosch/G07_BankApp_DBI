@@ -47,5 +47,11 @@ namespace BankingSystem
                 MessageBox.Show("Achtung! Nur Zahlen eingeben", "Fehler", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GeldLabel.Style = Styles.GetFontStyle(20);
+            TBGeldmenge.Style = Styles.GetTextBoxStyle();
+        }
     }
 }

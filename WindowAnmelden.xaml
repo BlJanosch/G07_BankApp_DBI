@@ -5,9 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowAnmelden" Height="400" Width="600" Loaded="Window_Loaded">
+        Title="WindowAnmelden" Height="250" Width="400" Loaded="Window_Loaded" Background="#333333" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#264826"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Aharoni"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="300" Height="60" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SmallButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#264826"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Aharoni"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="120" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid x:Name="MainGrid">
-        <Button x:Name="ButtonAnmelden" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,0,0,100" Click="ButtonAnmelden_Click">Anmelden</Button>
-        <Button x:Name="ButtonRegistrieren" Height="80" Width="400" HorizontalAlignment="Center" Margin="0,100,0,0" Click="ButtonRegistrieren_Click">Registrieren</Button>
+        <Button x:Name="ButtonAnmelden" Height="60" Width="300" HorizontalAlignment="Center" Margin="0,0,0,100" Click="ButtonAnmelden_Click" Style="{StaticResource ButtonStyle}">Anmelden</Button>
+        <Button x:Name="ButtonRegistrieren" Height="60" Width="300" HorizontalAlignment="Center" Margin="0,100,0,0" Click="ButtonRegistrieren_Click" Style="{StaticResource ButtonStyle}">Registrieren</Button>
     </Grid>
 </Window>

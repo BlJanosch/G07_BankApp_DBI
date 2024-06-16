@@ -22,6 +22,8 @@
 |13.06.24|Jannik Längle|Fixed Bug --> StatisticWindow Anzeigefehler|
 |15.06.24|Jannik Längle|JOIN Abfrage und Admin hinzugefügt|
 |15.06.24|Jannik Längle|Hintergrundfarbe geändert|
+|15.06.24|Noah Fedele|Design erstellt|
+|16.06.24|Jannik Längle|Design erweitert|
 
 ## 21.5.24
 Basic UI wurde erstellt, sowie die Datenbank mit entsprechenden Test-Einträgen. Zudem wurden noch alle Klassen angelegt.
@@ -51,3 +53,7 @@ Fixed Bug --> Sobald mehr als ein Wert doppelt bei den Ausgaben oder Einkünften
 
 ## 15.06.24
 JOIN Abfrage `Select name, standort, kontostand, datum, betrag, beschreibung from tblUser join tblEintrag on tblUser.id = tblEintrag.fkUserID;` und den Admin Benutzer hinzugefügt, welcher über alle Daten von allen Nutzern einsehen kann, sowie auf die Statistik des jeweiligen Nutzers. Benutzername: `Admin` Passwort: `Admin`
+Button Design erstellt --> `Window.Resources`
+
+## 16.06.24
+Alle Windows designed sowie Button Desgin vereinheitlicht und bei der Eingabe nur Zahlen zulassen.

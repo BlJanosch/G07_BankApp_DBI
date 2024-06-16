@@ -5,7 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="WindowGluecksspiel" Height="450" Width="500">
+        Title="WindowGluecksspiel" Height="450" Width="500" Background="#333333" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#264826"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Aharoni"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="140" Height="60" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -18,20 +39,20 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="Dein Einsatz:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="16"></Label>
-        <TextBox x:Name="TBEinsatz" Grid.Column="1" Grid.Row="0" Margin="25 35"></TextBox>
+        <Label Content="Dein Einsatz:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="20" x:Name="EinsatzLabel"></Label>
+        <TextBox x:Name="TBEinsatz" Grid.Column="1" Grid.Row="0" Margin="25 35" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"></TextBox>
 
-        <Label Content="Risikovariante wählen:" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="16"></Label>
-        <ComboBox x:Name="CBUser" Grid.Column="1" Grid.Row="1" Margin="25 35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15">
+        <Label Content="Risikovariante wählen:" x:Name="RisikoLabel" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="SemiBold" FontSize="20"></Label>
+        <ComboBox x:Name="CBUser" Grid.Column="1" Grid.Row="1" Margin="25 35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Transparent" FontSize="20" FontWeight="Bold">
             <ComboBoxItem Content="leicht" IsSelected="True"></ComboBoxItem>
             <ComboBoxItem Content="mittel"></ComboBoxItem>
             <ComboBoxItem Content="schwer"></ComboBoxItem>
         </ComboBox>
 
-        <Button x:Name="ButtonAbbrechen" Content="Abbrechen" Grid.Column="0" Grid.Row="3" Margin="35" IsCancel="True"></Button>
-        <Button x:Name="ButtonOK" Content="OK" Grid.Column="1" Grid.Row="3" Margin="35" Click="ButtonOK_Click_1"></Button>
+        <Button x:Name="ButtonAbbrechen" Content="Abbrechen" Grid.Column="0" Grid.Row="3" Margin="35,0,15,0" IsCancel="True" FontSize="20" FontWeight="Bold" Style="{StaticResource ButtonStyle}" Height="62"></Button>
+        <Button x:Name="ButtonOK" Content="OK" Grid.Column="1" Grid.Row="3" Margin="35,0,15,0" Click="ButtonOK_Click_1" FontWeight="Bold" FontSize="20" Style="{StaticResource ButtonStyle}" Height="62"></Button>
 
-        <Label Grid.Row="2" Grid.ColumnSpan="2" x:Name="LabelInfo"></Label>
-        
-    </Grid> 
+        <Label Grid.Row="2" Grid.ColumnSpan="2" x:Name="LabelInfo" FontWeight="Bold"></Label>
+
+    </Grid>
 </Window>

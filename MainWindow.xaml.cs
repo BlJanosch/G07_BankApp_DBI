@@ -202,7 +202,7 @@ namespace BankingSystem
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             DrawAnmelden(true);
-            // initMain();
+            LabelName.Style = Styles.GetFontStyle(20);
         }
 
         public void DrawAnmelden(bool ButtonEnabled)

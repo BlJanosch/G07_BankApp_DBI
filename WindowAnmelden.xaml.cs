@@ -41,7 +41,7 @@ namespace BankingSystem
                 MainGrid.RowDefinitions.Add(row);
             }
             ColumnDefinition ColumnLabel = new ColumnDefinition();
-            ColumnLabel.Width = new GridLength(1, GridUnitType.Star); 
+            ColumnLabel.Width = new GridLength(1.5, GridUnitType.Star); 
             MainGrid.ColumnDefinitions.Add(ColumnLabel);
             ColumnDefinition ColumnInput = new ColumnDefinition();
             ColumnInput.Width = new GridLength(3, GridUnitType.Star);
@@ -50,25 +50,25 @@ namespace BankingSystem
             Label Name = new Label()
             {
                 Content = "Name:",
-                FontSize = 20,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = Styles.GetFontStyle(20)
             };
 
             Label Passwort = new Label()
             {
                 Content = "Passwort:",
-                FontSize = 20,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = Styles.GetFontStyle(20)
             };
 
             Label Standort = new Label()
             {
                 Content = "Standort:",
-                FontSize = 20,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = Styles.GetFontStyle(20)
             };
 
             MainGrid.Children.Add(Name);
@@ -81,16 +81,31 @@ namespace BankingSystem
             {
                 TextAlignment = TextAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                Background = Brushes.Transparent,
+                Foreground = Brushes.White,
+                FontFamily = new FontFamily("Aharoni"),
+                FontWeight = FontWeights.Bold,
+                FontSize = 20
             };
             PasswortInput = new TextBox()
             {
                 TextAlignment = TextAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                Background = Brushes.Transparent,
+                Foreground = Brushes.White,
+                FontFamily = new FontFamily("Aharoni"),
+                FontWeight = FontWeights.Bold,
+                FontSize = 20
             };
             StandortInput = new TextBox()
             {
                 TextAlignment = TextAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                Background = Brushes.Transparent,
+                Foreground = Brushes.White,
+                FontFamily = new FontFamily("Aharoni"),
+                FontWeight = FontWeights.Bold,
+                FontSize = 20
             };
             Grid.SetColumn(NameInput, 1);
             Grid.SetColumn(PasswortInput, 1);
@@ -106,9 +121,10 @@ namespace BankingSystem
                 Content = "Abbrechen",
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(20, 0, 0, 0),
-                Width = 150,
-                Height = 50
+                Margin = new Thickness(5, 0, 0, 0),
+                Width = 120,
+                Height = 40,
+                Style = (Style) this.FindResource("SmallButtonStyle")
             };
             ButtonAbbrechen.Click += ButtonAbbrechen_Click;
             Grid.SetColumn(ButtonAbbrechen, 1);
@@ -120,9 +136,10 @@ namespace BankingSystem
                 Content = "OK",
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(0, 0, 20, 0),
-                Width = 150,
-                Height = 50
+                Margin = new Thickness(0, 0, 5, 0),
+                Width = 120,
+                Height = 40,
+                Style = (Style) this.FindResource("SmallButtonStyle")
             };
             ButtonOK.Click += ButtonOK_Click;
             Grid.SetColumn(ButtonOK, 1);
@@ -139,8 +156,8 @@ namespace BankingSystem
 
             Button ButtonAnmeldenNew = new Button
             {
-                Height = 80,
-                Width = 400,
+                Height = ButtonAnmelden.Height,
+                Width = ButtonAnmelden.Width,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Content = "Anmelden",
                 Margin = new Thickness(0, 0, 0, 100),
@@ -149,8 +166,8 @@ namespace BankingSystem
 
             Button ButtonRegestrierenNew = new Button
             {
-                Height = 80,
-                Width = 400,
+                Height = ButtonAnmelden.Height,
+                Width = ButtonAnmelden.Width,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Content = "Regestrieren",
                 Margin = new Thickness(0, 100, 0, 0),
@@ -163,6 +180,9 @@ namespace BankingSystem
             {
                 ButtonAnmeldenNew.IsEnabled = false;
             }
+
+            ButtonAnmeldenNew.Style = (Style) this.FindResource("ButtonStyle");
+            ButtonRegestrierenNew.Style = (Style)this.FindResource("ButtonStyle");
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -206,7 +226,7 @@ namespace BankingSystem
                 MainGrid.RowDefinitions.Add(row);
             }
             ColumnDefinition ColumnLabel = new ColumnDefinition();
-            ColumnLabel.Width = new GridLength(1, GridUnitType.Star);
+            ColumnLabel.Width = new GridLength(1.5, GridUnitType.Star);
             MainGrid.ColumnDefinitions.Add(ColumnLabel);
             ColumnDefinition ColumnInput = new ColumnDefinition();
             ColumnInput.Width = new GridLength(3, GridUnitType.Star);
@@ -215,17 +235,17 @@ namespace BankingSystem
             Label Name = new Label()
             {
                 Content = "Name:",
-                FontSize = 20,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = Styles.GetFontStyle(20)
             };
 
             Label Passwort = new Label()
             {
                 Content = "Passwort:",
-                FontSize = 20,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = Styles.GetFontStyle(20)
             };
 
 
@@ -237,11 +257,21 @@ namespace BankingSystem
             {
                 TextAlignment = TextAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                Background = Brushes.Transparent,
+                Foreground = Brushes.White,
+                FontFamily = new FontFamily("Aharoni"),
+                FontWeight = FontWeights.Bold,
+                FontSize = 20
             };
             PasswortInput = new TextBox()
             {
                 TextAlignment = TextAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                Background = Brushes.Transparent,
+                Foreground = Brushes.White,
+                FontFamily = new FontFamily("Aharoni"),
+                FontWeight = FontWeights.Bold,
+                FontSize = 20
             };
 
             Grid.SetColumn(NameInput, 1);
@@ -255,9 +285,10 @@ namespace BankingSystem
                 Content = "Abbrechen",
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(20, 0, 0, 0),
-                Width = 150,
-                Height = 50
+                Margin = new Thickness(5, 0, 0, 0),
+                Width = 120,
+                Height = 40,
+                Style = (Style)this.FindResource("SmallButtonStyle")
             };
             ButtonAbbrechen.Click += ButtonAbbrechen_Click;
             Grid.SetColumn(ButtonAbbrechen, 1);
@@ -269,9 +300,10 @@ namespace BankingSystem
                 Content = "OK",
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(0, 0, 20, 0),
-                Width = 150,
-                Height = 50
+                Margin = new Thickness(0, 0, 5, 0),
+                Width = 120,
+                Height = 40,
+                Style = (Style)this.FindResource("SmallButtonStyle")
             };
             ButtonOK.Click += ButtonOK_Click1; ;
             Grid.SetColumn(ButtonOK, 1);

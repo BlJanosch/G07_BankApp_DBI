@@ -3,33 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:BankingSystem"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Background="DarkOliveGreen">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Background="#333333" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#264826"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Aharoni"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="130" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="0.8*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0" Margin="3">
-            <Button Width="100" Margin="30 20 20 20" Content="Glücksspiel" x:Name="ButtonGluecksspiel" Click="ButtonGluecksspiel_Click"></Button>
-            <Button Width="100" Margin="0,20,20,20" Content="Geld abheben" x:Name="ButtonAbheben" Click="ButtonAbheben_Click"></Button>
-            <Button Width="100" Margin="0,20,20,20" Content="Geld überweisen" x:Name="ButtonÜberweisen" Click="ButtonÜberweisen_Click"></Button>
-            <Button Width="100" Margin="0,20,20,20" Content="Statistik" x:Name="ButtonStatistik" Click="ButtonStatistik_Click"></Button>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.RowSpan="2" Margin="3">
+            <Button Width="130" Height="40" Content="Glücksspiel" x:Name="ButtonGluecksspiel" Click="ButtonGluecksspiel_Click" Margin="0,0,0,40" Style="{StaticResource ButtonStyle}"></Button>
+            <Button Width="130" Height="40" Content="Geld abheben" x:Name="ButtonAbheben" Click="ButtonAbheben_Click" Margin="0,0,0,40" Style="{StaticResource ButtonStyle}"></Button>
+            <Button Width="130" Height="40" Content="Geld überweisen" x:Name="ButtonÜberweisen" Click="ButtonÜberweisen_Click" Margin="0,0,0,40" Style="{StaticResource ButtonStyle}"></Button>
+            <Button Width="130" Height="40" Content="Statistik" x:Name="ButtonStatistik" Click="ButtonStatistik_Click" Margin="0,0,0,40" Style="{StaticResource ButtonStyle}"></Button>
         </StackPanel>
 
-        <Canvas>
-            <Label x:Name="LabelName" Canvas.Left="137" Canvas.Top="32" Height="70" Width="260" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial"></Label>
-            <Label x:Name="LabelKontostand" Foreground="Red" Canvas.Left="33" Canvas.Top="107" Height="152" Width="468" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial"></Label>
-        </Canvas>
+        <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label x:Name="LabelName" FontSize="26" HorizontalAlignment="Center" FontFamily="Arial" Margin="0, 0, 0, 30"></Label>
+            <Label x:Name="LabelKontostand" Foreground="Red" FontSize="40" HorizontalAlignment="Center" FontFamily="Arial" Margin="0, 30, 0, 0"></Label>
+        </Grid>
 
-        <ListBox x:Name="EintragListe" Grid.Row="0" Grid.Column="1" Margin="5" Background="GhostWhite" MouseDoubleClick="EintragListe_MouseDoubleClick"></ListBox>
+        <ListBox Foreground="White" FontFamily="Aharoni" FontWeight="Bold" FontSize="20" x:Name="EintragListe" Grid.Row="0" Grid.Column="2" Margin="5" Background="Transparent" MouseDoubleClick="EintragListe_MouseDoubleClick"></ListBox>
 
-        <Button Grid.Row="1" Grid.Column="1" Height="50" Width="100" x:Name="ButtonKontoLöschen" HorizontalAlignment="Left" Margin="20,0,0,0" Click="ButtonKontoLöschen_Click">Konto löschen</Button>
-        <Button Grid.Row="1" Grid.Column="1" Height="50" Width="100" x:Name="ButtonKontoAbmelden" HorizontalAlignment="Right" Margin="0,0,20,0" Click="ButtonKontoAbmelden_Click">Abmelden</Button>
+        <Button Grid.Row="1" Grid.Column="2" Height="50" Width="130" x:Name="ButtonKontoLöschen" HorizontalAlignment="Left" Margin="20,0,0,0" Click="ButtonKontoLöschen_Click" Style="{StaticResource ButtonStyle}" Background="OrangeRed">Konto löschen</Button>
+        <Button Grid.Row="1" Grid.Column="2" Height="50" Width="130" x:Name="ButtonKontoAbmelden" HorizontalAlignment="Right" Margin="0,0,20,0" Click="ButtonKontoAbmelden_Click" Style="{StaticResource ButtonStyle}" Background="DarkOrange">Abmelden</Button>
 
     </Grid>
 </Window>

@@ -44,12 +44,24 @@ namespace BankingSystem
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            FixNameLabel.Style = Styles.GetFontStyle(20);
+            FixStandortLabel.Style = Styles.GetFontStyle(20);
+            FixKontostandLabel.Style = Styles.GetFontStyle(20);
+            FixDatumLabel.Style = Styles.GetFontStyle(20);
+            FixBetragLabel.Style = Styles.GetFontStyle(20);
+            FixBeschreibungLabel.Style = Styles.GetFontStyle(20);
             NameLabel.Content = adminEintragList[Index].Name;
+            NameLabel.Style = Styles.GetFontStyle(20);
             StandortLabel.Content = adminEintragList[Index].Standort;
+            StandortLabel.Style = Styles.GetFontStyle(20);
             KontostandLabel.Content = $"{adminEintragList[Index].Kontostand}€";
+            KontostandLabel.Style = Styles.GetFontStyle(20);
             DatumLabel.Content = adminEintragList[Index].Datum;
+            DatumLabel.Style = Styles.GetFontStyle(20);
             BetragLabel.Content = $"{adminEintragList[Index].Betrag}€";
+            BetragLabel.Style = Styles.GetFontStyle(20);
             BeschreibungLabel.Content = adminEintragList[Index].Beschreibung;
+            BeschreibungLabel.Style = Styles.GetFontStyle(20);
 
             StatistikButton.Content = $"Alle Ausgaben von {adminEintragList[Index].Name} anzeigen";
         }

@@ -5,11 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankingSystem"
         mc:Ignorable="d"
-        Title="AdminUserAnsicht" Height="400" Width="400" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="AdminUserAnsicht" Height="400" Width="440" ResizeMode="NoResize" Background="#333333" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#264826"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Aharoni"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="130" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle2" TargetType="Button">
+            <Setter Property="Background" Value="#264826"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Aharoni"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="260" Height="40" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="1.9*"></ColumnDefinition>
+            <ColumnDefinition Width="1.8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -20,12 +60,12 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Name:</Label>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="1">Standort:</Label>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="2">Kontostand:</Label>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="3">Datum:</Label>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="4">Betrag:</Label>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="5">Beschreibung:</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" x:Name="FixNameLabel">Name:</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="1" x:Name="FixStandortLabel">Standort:</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="2" x:Name="FixKontostandLabel">Kontostand:</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="3" x:Name="FixDatumLabel">Datum:</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="4" x:Name="FixBetragLabel">Betrag:</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="5" x:Name="FixBeschreibungLabel">Beschreibung:</Label>
         <Label VerticalAlignment="Center" x:Name="NameLabel" Grid.Column="1" FontSize="20"></Label>
         <Label VerticalAlignment="Center" x:Name="StandortLabel" Grid.Column="1" Grid.Row="1" FontSize="20"></Label>
         <Label VerticalAlignment="Center" x:Name="KontostandLabel" Grid.Column="1" Grid.Row="2" FontSize="20"></Label>
@@ -33,7 +73,7 @@
         <Label VerticalAlignment="Center" x:Name="BetragLabel" Grid.Column="1" Grid.Row="4" FontSize="20"></Label>
         <Label VerticalAlignment="Center" x:Name="BeschreibungLabel" Grid.Column="1" Grid.Row="5" FontSize="20"></Label>
 
-        <Button Grid.Column="1" Grid.Row="6" Margin="10" x:Name="StatistikButton" Click="StatistikButton_Click"></Button>
-        <Button  Grid.Row="6" Margin="10" IsCancel="True">Zurück</Button>
+        <Button Grid.Column="1" Grid.Row="6" x:Name="StatistikButton" Width="260" Click="StatistikButton_Click" Height="40" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle2}"></Button>
+        <Button  Grid.Row="6" IsCancel="True" Height="40" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}">Zurück</Button>
     </Grid>
 </Window>
