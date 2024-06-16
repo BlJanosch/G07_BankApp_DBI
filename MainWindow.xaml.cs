@@ -43,9 +43,6 @@ namespace BankingSystem
             }
         }
 
-
-        // JOIN Abfrage: select name, standort, kontostand, datum, betrag, beschreibung from tblUser join tblEintrag on tblUser.id = tblEintrag.fkUserID;
-
         private void ButtonGluecksspiel_Click(object sender, RoutedEventArgs e)
         {
             WindowGluecksspiel windowGluecksspiel = new WindowGluecksspiel(MainUser);

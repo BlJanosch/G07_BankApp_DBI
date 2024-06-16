@@ -42,5 +42,11 @@ namespace BankingSystem
         {
             this.Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DeleteLabel.Style = Styles.GetFontStyle(20);
+            LoadingLabel.Style = Styles.GetFontStyle(20);
+        }
     }
 }

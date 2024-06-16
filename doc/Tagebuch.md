@@ -58,5 +58,40 @@ Button Design erstellt --> `Window.Resources`
 ## 16.06.24
 Alle Windows designed sowie Button Desgin vereinheitlicht und bei der Eingabe nur Zahlen zulassen.
 
+## Abfragen
+
+### JOIN - Abfrage
+`Select name, standort, kontostand, datum, betrag, beschreibung from tblUser join tblEintrag on tblUser.id = tblEintrag.fkUserID;`
+
+tblUser und tblEintrag werden zusammengeführt, damit der Admin alle Einnahmen und Ausgaben von den einzelnen Benutzern einsehen kann.
+
+### User - Abfrage
+`SELECT * FROM tblUser`
+
+Um alle Benutzer und ihre Daten zu bekommen.
+
+### Eintrag - Abfrage
+`SELECT * FROM tblEintrag`
+
+Um alle Einträge zu bekommen.
+
+### CREATE
++ Um Einträge zu erstellen
+    + `insert into tblEintrag (fkUserID, datum, betrag, beschreibung) values ({fkUserID}, '{date}', {Betrag}, '{Beschreibung}')`
++ Um Benutzer zu erstellen
+    + `INSERT INTO tblUser(id, name, standort, kontostand, passwort) VALUES({ID}, '{Name}', '{Standort}', {Kontostand}, '{Passwort}');`
++ Um den Admin-Benutzer zu erstellen
+    + `INSERT INTO tblUser(id, name, standort, kontostand, passwort) VALUES({Admin.ID}, '{Admin.Name}', '{Admin.Standort}', {Admin.Kontostand}, '{Admin.Passwort}');`
+
+### UPDATE
++ Um Userdaten zu aktualisieren
+    + `UPDATE tblUser SET kontostand = {user.Kontostand} WHERE id = {UserID}`
+
+### DELETE
++ Um Benutzer wieder zu löschen
+    + `DELETE FROM tblUser WHERE id = {ID};`
++ Um die dazugehörigen Einträge zu löschen
+    + `DELETE FROM tblEintrag WHERE fkUserID = {ID};`
+
 ## Anleitung
 https://github.com/BlJanosch/G05_BankApp_DBI/blob/master/README.md
