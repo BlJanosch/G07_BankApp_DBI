@@ -183,6 +183,12 @@ namespace BankingSystem
 
             ButtonAnmeldenNew.Style = (Style) this.FindResource("ButtonStyle");
             ButtonRegestrierenNew.Style = (Style)this.FindResource("ButtonStyle");
+
+            users = User.GetUsers();
+            if ((users == null || users.Count == 0) || (users[0].Name == User.Admin.Name && users.Count == 1))
+            {
+                ButtonAnmeldenNew.IsEnabled = false;
+            }
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
